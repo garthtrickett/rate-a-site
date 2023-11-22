@@ -11,7 +11,7 @@ export const delayLink = new ApolloLink((operation, forward) => {
   return new Observable(observer => {
     const timeout = setTimeout(() => {
       forward(operation).subscribe(observer)
-    }, operation.getContext().delay ?? 10)
+    }, 0)
     return () => clearTimeout(timeout)
   })
 })
