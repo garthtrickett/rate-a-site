@@ -1,19 +1,22 @@
-import React from 'react'
-import { ApolloWrapper } from '../lib/apollo-wrapper'
 import PropTypes from 'prop-types'
+import { ApolloWrapper } from '../lib/apollo-wrapper'
+import React from 'react'
 
 /**
- * RootLayout component.
- * @param {{children: React.ReactNode}} props - The props.
+ * @param {{ children: React.ReactNode }} props
  */
-export default function RootLayout({ children }) {
+function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>{children ? <ApolloWrapper>{children}</ApolloWrapper> : null}</body>
-    </html>
+    <ApolloWrapper>
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    </ApolloWrapper>
   )
 }
 
 RootLayout.propTypes = {
   children: PropTypes.node
 }
+
+export default RootLayout

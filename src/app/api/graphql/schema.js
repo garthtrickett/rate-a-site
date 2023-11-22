@@ -1,16 +1,49 @@
 import { gql } from 'graphql-tag'
 
+import { makeExecutableSchema } from '@graphql-tools/schema'
+
 export const typeDefs = gql`
-  type User {
-    id: String!
-    name: String!
-  }
-  type Post {
+  type Product {
     id: String!
     title: String!
   }
   type Query {
-    getUser(id: String!): User
-    getPosts: [Post!]!
+    products: [Product!]!
   }
 `
+
+export const resolvers = {
+  Query: {
+    products: async () => [
+      {
+        id: 'product:5',
+        title: 'Soft Warm Apollo Beanie'
+      },
+      {
+        id: 'product:2',
+        title: 'Stainless Steel Water Bottle'
+      },
+      {
+        id: 'product:3',
+        title: 'Athletic Baseball Cap'
+      },
+      {
+        id: 'product:4',
+        title: 'Baby Onesies'
+      },
+      {
+        id: 'product:1',
+        title: 'The Apollo T-Shirt'
+      },
+      {
+        id: 'product:6',
+        title: 'The Apollo Socks'
+      }
+    ]
+  }
+}
+
+export const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers
+})

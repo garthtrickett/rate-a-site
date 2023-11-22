@@ -1,20 +1,22 @@
 'use client'
 import React from 'react'
-
-import { gql } from 'graphql-tag'
-
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr'
-export const dynamic = 'force-dynamic'
+import { gql } from '@apollo/client'
 
-const query = gql`
-  query Query {
-    getPosts {
+const QUERY = gql`
+  query dynamicProducts {
+    products {
       id
+      title
     }
   }
 `
 
-export default function Home() {
-  const { data } = useSuspenseQuery(query)
-  return <div>{data.getPosts[0].id}</div>
+export const dynamic = 'force-dynamic'
+
+export default function Page() {
+  const { data } = useSuspenseQuery(QUERY)
+  console.log(data)
+
+  return <div> hello</div>
 }

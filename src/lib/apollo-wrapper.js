@@ -1,40 +1,26 @@
 'use client'
-import PropTypes from 'prop-types'
-import { ApolloLink, HttpLink } from '@apollo/client'
 import React from 'react'
+import { HttpLink } from '@apollo/client'
 import {
   ApolloNextAppProvider,
   NextSSRInMemoryCache,
-  NextSSRApolloClient,
-  SSRMultipartLink
+  NextSSRApolloClient
 } from '@apollo/experimental-nextjs-app-support/ssr'
+
+import { SchemaLink } from '@apollo/client/link/schema'
+
+import { loadErrorMessages, loadDevMessages } from '@apollo/client/dev'
 import { setVerbosity } from 'ts-invariant'
+import { delayLink } from './delayLink'
+import { schema } from '../app/api/graphql/schema'
+import PropTypes from 'prop-types'
 
 setVerbosity('debug')
-
-function makeClient() {
-  const httpLink = new HttpLink({
-    uri: process.env.GRAPHQL_URL,
-    fetchOptions: { cache: 'no-store' }
-  })
-
-  return new NextSSRApolloClient({
-    cache: new NextSSRInMemoryCache(),
-    link:
-      typeof window === 'undefined'
-        ? ApolloLink.from([
-            new SSRMultipartLink({
-              stripDefer: true
-            }),
-            httpLink
-          ])
-        : httpLink
-  })
-}
+loadDevMessages()
+loadErrorMessages()
 
 /**
- * ApolloWrapper component.
- * @param {{children: React.ReactNode}} props - The props.
+ * @param {{ children: React.ReactNode }} props
  */
 export function ApolloWrapper({ children }) {
   return (
@@ -42,8 +28,21 @@ export function ApolloWrapper({ children }) {
       {children}
     </ApolloNextAppProvider>
   )
+
+  function makeClient() {
+    const httpLink = new HttpLink({
+      uri: '/api/graphql'
+    })
+
+    return new NextSSRApolloClient({
+      cache: new NextSSRInMemoryCache(),
+      link: delayLink.concat(
+        typeof window === 'undefined' ? new SchemaLink({ schema }) : httpLink
+      )
+    })
+  }
 }
 
 ApolloWrapper.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node.isRequired
 }
