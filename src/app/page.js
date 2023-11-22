@@ -2,6 +2,7 @@
 import React from 'react'
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr'
 import { gql } from '@apollo/client'
+export const runtime = 'edge' // 'nodejs' is the default
 
 const QUERY = gql`
   query dynamicProducts {
