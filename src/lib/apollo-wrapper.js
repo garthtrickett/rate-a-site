@@ -19,6 +19,8 @@ setVerbosity('debug')
 loadDevMessages()
 loadErrorMessages()
 
+// If its SSR Schemalink is used otherwise httpLink
+// Delaylink is custom not really sure what it does yet
 /**
  * @param {{ children: React.ReactNode }} props
  */
