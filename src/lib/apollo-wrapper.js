@@ -3,16 +3,19 @@ import PropTypes from 'prop-types'
 import { ApolloLink, HttpLink } from '@apollo/client'
 import React from 'react'
 import {
-  NextSSRApolloClient,
   ApolloNextAppProvider,
   NextSSRInMemoryCache,
+  NextSSRApolloClient,
   SSRMultipartLink
 } from '@apollo/experimental-nextjs-app-support/ssr'
+import { setVerbosity } from 'ts-invariant'
 
-function makeClient () {
+setVerbosity('debug')
+
+function makeClient() {
   const httpLink = new HttpLink({
-    // https://studio.apollographql.com/public/spacex-l4uc6p/
-    uri: 'https://main--spacex-l4uc6p.apollographos.net/graphql'
+    uri: 'http://localhost:3000/api/graphql',
+    fetchOptions: { cache: 'no-store' }
   })
 
   return new NextSSRApolloClient({
@@ -20,20 +23,20 @@ function makeClient () {
     link:
       typeof window === 'undefined'
         ? ApolloLink.from([
-          new SSRMultipartLink({
-            stripDefer: true
-          }),
-          httpLink
-        ])
+            new SSRMultipartLink({
+              stripDefer: true
+            }),
+            httpLink
+          ])
         : httpLink
   })
 }
 
 /**
- * @param {Object} props
- * @param {React.ReactNode} props.children
+ * ApolloWrapper component.
+ * @param {{children: React.ReactNode}} props - The props.
  */
-export function ApolloWrapper ({ children }) {
+export function ApolloWrapper({ children }) {
   return (
     <ApolloNextAppProvider makeClient={makeClient}>
       {children}
@@ -42,5 +45,5 @@ export function ApolloWrapper ({ children }) {
 }
 
 ApolloWrapper.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node
 }
