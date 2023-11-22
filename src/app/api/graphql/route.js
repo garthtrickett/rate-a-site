@@ -2,6 +2,8 @@ import { startServerAndCreateNextHandler } from '@as-integrations/next'
 import { ApolloServer } from '@apollo/server'
 import { schema } from './schema'
 
+export const runtime = 'edge' // 'nodejs' is the default
+
 const server = new ApolloServer({
   schema
 })
