@@ -1,11 +1,11 @@
 import type { Config } from 'drizzle-kit'
-
-console.log(process.env.DATABASE_URL)
+import 'dotenv/config'
 
 const config: Config = {
-  schema: './src/lib/schema.js',
+  schema: './src/drizzle/schema.js',
+  out: './src/db/migrations', // specify the output directory for migrations
   dbCredentials: {
-    uri: 'mysql://2ptt99cds49ak5tvp1x0:pscale_pw_OXhSiSUjP33kznsvjvPDegA6poTixfkj0BtFwTHf8Is@aws.connect.psdb.cloud/hair-review?ssl={"rejectUnauthorized":true}'
+    uri: process.env.DATABASE_URL as string
   },
   driver: 'mysql2'
 }
