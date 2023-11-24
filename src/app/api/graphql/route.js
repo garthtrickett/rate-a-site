@@ -1,3 +1,4 @@
+import { withAxiom } from 'next-axiom'
 import { startServerAndCreateNextHandler } from '@as-integrations/next'
 import { ApolloServer } from '@apollo/server'
 import { schema } from './schema'
@@ -10,16 +11,14 @@ const server = new ApolloServer({
 
 const handler = startServerAndCreateNextHandler(server)
 
-/**
- * @param {Request} request
- */
-export async function GET(request) {
-  return handler(request)
-}
+export const GET = withAxiom(req => {
+  req.log.info('Login function called')
 
-/**
- * @param {Request} request
- */
-export async function POST(request) {
-  return handler(request)
-}
+  // You can create intermediate loggers
+  const log = req.log.with({ scope: 'user' })
+  log.info('User logged in', { userId: 42 })
+
+  return handler(req)
+})
+
+export const POST = GET

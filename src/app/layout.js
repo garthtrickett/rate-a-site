@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { ApolloWrapper } from '../lib/apollo-wrapper'
+import { AxiomWebVitals } from 'next-axiom'
 import React from 'react'
 
 /**
@@ -9,6 +10,7 @@ function RootLayout({ children }) {
   return (
     <ApolloWrapper>
       <html lang="en">
+        <AxiomWebVitals />
         <body>{children}</body>
       </html>
     </ApolloWrapper>
