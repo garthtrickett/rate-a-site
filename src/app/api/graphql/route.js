@@ -1,4 +1,4 @@
-import { withAxiom } from 'next-axiom'
+// import { withAxiom } from 'next-axiom'
 import { startServerAndCreateNextHandler } from '@as-integrations/next'
 import { ApolloServer } from '@apollo/server'
 import { schema } from './schema'
@@ -11,8 +11,13 @@ const server = new ApolloServer({
 
 const handler = startServerAndCreateNextHandler(server)
 
-export const GET = withAxiom(req => {
+/**
+ * Handles a GET request.
+ *
+ * @param {Request} req - The request object.
+ */
+export const GET = req => {
   return handler(req)
-})
+}
 
 export const POST = GET
