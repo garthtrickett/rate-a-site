@@ -1,0 +1,1 @@
+ALTER TABLE `todo` DROP COLUMN `added_at`;

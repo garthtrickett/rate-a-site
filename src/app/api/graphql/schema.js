@@ -1,45 +1,28 @@
 import { gql } from 'graphql-tag'
-
 import { makeExecutableSchema } from '@graphql-tools/schema'
+import { db } from '../../../drizzle/index.js'
+import { todos as todosTable } from '../../../drizzle/schema.js'
 
 export const typeDefs = gql`
-  type Product {
-    id: String!
-    title: String!
+  type Todo {
+    id: Int!
+    description: String!
+    completed: Boolean!
   }
   type Query {
-    products: [Product!]!
+    todos: [Todo!]!
   }
 `
 
 export const resolvers = {
   Query: {
-    products: async () => [
-      {
-        id: 'product:5',
-        title: 'Soft Warm Apollo Beanie'
-      },
-      {
-        id: 'product:2',
-        title: 'Stainless Steel Water Bottle'
-      },
-      {
-        id: 'product:3',
-        title: 'Athletic Baseball Cap'
-      },
-      {
-        id: 'product:4',
-        title: 'Baby Onesies'
-      },
-      {
-        id: 'product:1',
-        title: 'The Apollo T-Shirt'
-      },
-      {
-        id: 'product:6',
-        title: 'The Apollo Socks'
-      }
-    ]
+    todos: async () => {
+      // Fetch data from the database
+      const todos = await db.select().from(todosTable)
+
+      return todos
+      // Convert the data to the format expected by your GraphQL schema
+    }
   }
 }
 

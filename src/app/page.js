@@ -5,10 +5,11 @@ import { gql } from '@apollo/client'
 export const runtime = 'edge' // 'nodejs' is the default
 
 const QUERY = gql`
-  query dynamicProducts {
-    products {
+  query getTodos {
+    todos {
       id
-      title
+      description
+      completed
     }
   }
 `
