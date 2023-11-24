@@ -20,7 +20,7 @@ export const dynamic = 'force-dynamic'
 export default function Page() {
   const { data } = useSuspenseQuery(QUERY)
   const log = useLogger()
-  log.debug('User logged in', { userId: 42 })
+  log.debug('Component Log Example', { userId: 42 })
   console.log(data)
 
   return <div> hello</div>
