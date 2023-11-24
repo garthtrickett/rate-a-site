@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { ApolloWrapper } from '../lib/apollo-wrapper'
 import React from 'react'
+// import { AxiomWebVitals } from 'next-axiom'
 
 /**
  * @param {{ children: React.ReactNode }} props
