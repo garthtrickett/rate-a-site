@@ -12,6 +12,11 @@ const server = new ApolloServer({
 const handler = startServerAndCreateNextHandler(server)
 
 export const GET = withAxiom(req => {
+  req.log.info('Login function called')
+
+  // You can create intermediate loggers
+  const log = req.log.with({ scope: 'user' })
+  log.info('User logged in', { userId: 42 })
   return handler(req)
 })
 
