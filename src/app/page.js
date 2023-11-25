@@ -3,6 +3,7 @@ import React from 'react'
 import { useLogger } from 'next-axiom'
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr'
 import { gql } from '@apollo/client'
+import { UserButton } from '@clerk/nextjs'
 export const runtime = 'edge' // 'nodejs' is the default
 
 const QUERY = gql`
@@ -23,5 +24,9 @@ export default function Page() {
   log.debug('Component Log Example', { userId: 42 })
   console.log(data)
 
-  return <div> hello</div>
+  return (
+    <div>
+      <UserButton afterSignOutUrl="/" />
+    </div>
+  )
 }
