@@ -16,6 +16,7 @@
     "@apollo/experimental-nextjs-app-support": "^0.5.1",
     "@apollo/server": "^4.9.5",
     "@as-integrations/next": "^3.0.0",
+    "@clerk/nextjs": "^4.27.2",
     "@graphql-tools/schema": "^10.0.0",
     "@planetscale/database": "^1.11.0",
     "D": "^1.0.0",
