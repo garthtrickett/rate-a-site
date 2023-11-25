@@ -15,6 +15,13 @@
       "when": 1700784596056,
       "tag": "0001_modern_bedlam",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1700880680055,
+      "tag": "0002_abandoned_sabra",
+      "breakpoints": true
     }
   ]
 }

@@ -7,11 +7,33 @@ import { UserButton } from '@clerk/nextjs'
 export const runtime = 'edge' // 'nodejs' is the default
 
 const QUERY = gql`
-  query getTodos {
-    todos {
+  query getData {
+    organisations {
       id
-      description
-      completed
+      name
+    }
+    professionals {
+      id
+      name
+      organisationId
+    }
+    customers {
+      id
+      name
+    }
+    organisationReviews {
+      id
+      customerId
+      organisationId
+      rating
+      comments
+    }
+    professionalReviews {
+      id
+      customerId
+      professionalId
+      rating
+      comments
     }
   }
 `

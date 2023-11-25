@@ -1,5 +1,4 @@
 import type { Config } from 'drizzle-kit'
-import 'dotenv/config'
 
 const config: Config = {
   schema: './src/drizzle/schema.js',
