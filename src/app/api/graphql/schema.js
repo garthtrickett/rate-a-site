@@ -9,6 +9,8 @@ import {
   professionalReviews as professionalReviewsTable
 } from '../../../drizzle/schema.js'
 
+// Add a through table called someting like Placement that has professionalId and OrganisationId
+// Use Joe's Atrax schema as a guide
 export const typeDefs = gql`
   type Organisation {
     id: Int!

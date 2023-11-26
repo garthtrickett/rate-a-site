@@ -1,4 +1,6 @@
 import type { Config } from 'drizzle-kit'
+import dotenv from 'dotenv'
+dotenv.config({ path: '.env.local' })
 
 const config: Config = {
   schema: './src/drizzle/schema.js',

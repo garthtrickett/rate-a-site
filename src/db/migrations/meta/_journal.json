@@ -22,6 +22,13 @@
       "when": 1700880680055,
       "tag": "0002_abandoned_sabra",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1700956441268,
+      "tag": "0003_ambiguous_junta",
+      "breakpoints": true
     }
   ]
 }

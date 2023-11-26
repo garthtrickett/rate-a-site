@@ -20,6 +20,15 @@ export const customers = mysqlTable('customer', {
   // add other fields as necessary
 })
 
+export const professionalOrganisationMapping = mysqlTable(
+  'professionalOrganisationMapping',
+  {
+    id: serial('id'),
+    professionalId: int('professionalId'),
+    organisationId: int('organisationId')
+  }
+)
+
 export const organisationReviews = mysqlTable('organisationReview', {
   id: serial('id'),
   customerId: int('customerId'),
