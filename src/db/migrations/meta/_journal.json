@@ -29,6 +29,41 @@
       "when": 1700956441268,
       "tag": "0003_ambiguous_junta",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1700960966825,
+      "tag": "0004_spicy_havok",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1700961071670,
+      "tag": "0005_absent_vance_astro",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1700961191172,
+      "tag": "0006_natural_korg",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1700961344975,
+      "tag": "0007_opposite_tomorrow_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1700971963734,
+      "tag": "0008_perfect_oracle",
+      "breakpoints": true
     }
   ]
 }

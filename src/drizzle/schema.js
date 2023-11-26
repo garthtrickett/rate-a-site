@@ -1,21 +1,21 @@
 // drizzle/schema.js
-import { mysqlTable, serial, varchar, int } from 'drizzle-orm/mysql-core'
+import {
+  mysqlTable,
+  serial,
+  varchar,
+  int,
+  primaryKey
+} from 'drizzle-orm/mysql-core'
+import { relations } from 'drizzle-orm'
 
 export const organisations = mysqlTable('organisation', {
-  id: serial('id'),
+  id: serial('id').primaryKey().autoincrement(),
   name: varchar('name', { length: 256 })
   // add other fields as necessary
 })
 
 export const professionals = mysqlTable('professional', {
-  id: serial('id'),
-  name: varchar('name', { length: 256 }),
-  organisationId: int('organisationId')
-  // add other fields as necessary
-})
-
-export const customers = mysqlTable('customer', {
-  id: serial('id'),
+  id: serial('id').primaryKey().autoincrement(),
   name: varchar('name', { length: 256 })
   // add other fields as necessary
 })
@@ -23,26 +23,111 @@ export const customers = mysqlTable('customer', {
 export const professionalOrganisationMapping = mysqlTable(
   'professionalOrganisationMapping',
   {
-    id: serial('id'),
-    professionalId: int('professionalId'),
-    organisationId: int('organisationId')
-  }
+    professionalId: int('professionalId').notNull(),
+    organisationId: int('organisationId').notNull()
+  },
+  t => ({
+    pk: primaryKey({ columns: [t.professionalId, t.organisationId] })
+  })
 )
 
-export const organisationReviews = mysqlTable('organisationReview', {
+export const professionalOrganisationMappingRelations = relations(
+  professionalOrganisationMapping,
+  ({ one }) => ({
+    professional: one(professionals, {
+      fields: [professionalOrganisationMapping.professionalId],
+      references: [professionals.id]
+    }),
+    organisation: one(organisations, {
+      fields: [professionalOrganisationMapping.organisationId],
+      references: [organisations.id]
+    })
+  })
+)
+
+// Mapping from the individual tablex to the join table
+export const professionalsRelations = relations(professionals, ({ many }) => ({
+  professionalOrganisationMappings: many(professionalOrganisationMapping)
+}))
+
+export const organisationsRelations = relations(organisations, ({ many }) => ({
+  professionalOrganisationMappings: many(professionalOrganisationMapping)
+}))
+
+export const customers = mysqlTable('customer', {
   id: serial('id'),
-  customerId: int('customerId'),
-  organisationId: int('organisationId'),
+  name: varchar('name', { length: 256 })
+  // add other fields as necessary
+})
+
+export const customersRelations = relations(customers, ({ one, many }) => ({
+  organisationReviews: many(organisationReviews, {
+    fields: [customers.id],
+    references: [organisationReviews.commonReviewFieldsId]
+  }),
+  professionalReviews: many(professionalReviews, {
+    fields: [customers.id],
+    references: [professionalReviews.commonReviewFieldsId]
+  })
+}))
+
+export const commonReviewFields = mysqlTable('commonReviewFields', {
+  id: serial('id').primaryKey().autoincrement(),
+  customerId: int('customerId').notNull(),
   rating: int('rating'),
   comments: varchar('comments', { length: 1024 })
-  // add other fields as necessary
+})
+
+export const organisationReviews = mysqlTable('organisationReview', {
+  id: serial('id').primaryKey().autoincrement(),
+  commonReviewFieldsId: int('commonReviewFieldsId').notNull(),
+  organisationId: int('organisationId').notNull()
 })
 
 export const professionalReviews = mysqlTable('professionalReview', {
-  id: serial('id'),
-  customerId: int('customerId'),
-  professionalId: int('professionalId'),
-  rating: int('rating'),
-  comments: varchar('comments', { length: 1024 })
-  // add other fields as necessary
+  id: serial('id').primaryKey().autoincrement(),
+  commonReviewFieldsId: int('commonReviewFieldsId').notNull(),
+  professionalId: int('professionalId').notNull()
 })
+
+export const commonReviewFieldsRelations = relations(
+  commonReviewFields,
+  ({ one }) => ({
+    organisationReview: one(organisationReviews, {
+      fields: [commonReviewFields.id],
+      references: [organisationReviews.commonReviewFieldsId]
+    }),
+    professionalReview: one(professionalReviews, {
+      fields: [commonReviewFields.id],
+      references: [professionalReviews.commonReviewFieldsId]
+    })
+  })
+)
+
+export const organisationReviewsRelations = relations(
+  organisationReviews,
+  ({ one }) => ({
+    commonReviewFields: one(commonReviewFields, {
+      fields: [organisationReviews.commonReviewFieldsId],
+      references: [commonReviewFields.id]
+    }),
+    customer: one(customers, {
+      fields: [organisationReviews.commonReviewFieldsId],
+      references: [customers.id]
+    })
+  })
+)
+
+export const professionalReviewsRelations = relations(
+  professionalReviews,
+  ({ one }) => ({
+    commonReviewFields: one(commonReviewFields, {
+      fields: [professionalReviews.commonReviewFieldsId],
+      references: [commonReviewFields.id]
+    }),
+    customer: one(customers, {
+      fields: [organisationReviews.commonReviewFieldsId],
+      references: [customers.id]
+    })
+  })
+)

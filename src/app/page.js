@@ -15,7 +15,6 @@ const QUERY = gql`
     professionals {
       id
       name
-      organisationId
     }
     customers {
       id
