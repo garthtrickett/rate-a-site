@@ -60,34 +60,29 @@ export const customers = mysqlTable('customer', {
   // add other fields as necessary
 })
 
-export const customersRelations = relations(customers, ({ one, many }) => ({
-  organisationReviews: many(organisationReviews, {
-    fields: [customers.id],
-    references: [organisationReviews.commonReviewFieldsId]
-  }),
-  professionalReviews: many(professionalReviews, {
-    fields: [customers.id],
-    references: [professionalReviews.commonReviewFieldsId]
-  })
+export const customersRelations = relations(customers, ({ many }) => ({
+  organisationReviews: many(organisationReviews),
+  professionalReviews: many(professionalReviews)
 }))
 
 export const commonReviewFields = mysqlTable('commonReviewFields', {
   id: serial('id').primaryKey().autoincrement(),
-  customerId: int('customerId').notNull(),
   rating: int('rating'),
   comments: varchar('comments', { length: 1024 })
 })
 
-export const organisationReviews = mysqlTable('organisationReview', {
+export const organisationReviews = mysqlTable('organisationReviews', {
   id: serial('id').primaryKey().autoincrement(),
-  commonReviewFieldsId: int('commonReviewFieldsId').notNull(),
-  organisationId: int('organisationId').notNull()
+  commonReviewFieldsId: int('commonReviewFieldsId'),
+  organisationId: int('organisationId'),
+  customerId: int('customerId')
 })
 
 export const professionalReviews = mysqlTable('professionalReview', {
   id: serial('id').primaryKey().autoincrement(),
-  commonReviewFieldsId: int('commonReviewFieldsId').notNull(),
-  professionalId: int('professionalId').notNull()
+  professionalId: int('professionalId'),
+  commonReviewFieldsId: int('commonReviewFieldsId'),
+  customerId: int('customerId')
 })
 
 export const commonReviewFieldsRelations = relations(
@@ -126,7 +121,7 @@ export const professionalReviewsRelations = relations(
       references: [commonReviewFields.id]
     }),
     customer: one(customers, {
-      fields: [organisationReviews.commonReviewFieldsId],
+      fields: [professionalReviews.commonReviewFieldsId],
       references: [customers.id]
     })
   })
