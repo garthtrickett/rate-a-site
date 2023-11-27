@@ -7,32 +7,14 @@ import { UserButton } from '@clerk/nextjs'
 export const runtime = 'edge' // 'nodejs' is the default
 
 const QUERY = gql`
-  query getData {
-    organisations {
+  query getData($organisationId: Int!) {
+    organisation(id: $organisationId) {
       id
       name
-    }
-    professionals {
-      id
-      name
-    }
-    customers {
-      id
-      name
-    }
-    organisationReviews {
-      id
-      customerId
-      organisationId
-      rating
-      comments
-    }
-    professionalReviews {
-      id
-      customerId
-      professionalId
-      rating
-      comments
+      professionals {
+        id
+        name
+      }
     }
   }
 `
@@ -40,7 +22,11 @@ const QUERY = gql`
 export const dynamic = 'force-dynamic'
 
 export default function Page() {
-  const { data } = useSuspenseQuery(QUERY)
+  const { data } = useSuspenseQuery(QUERY, {
+    variables: { organisationId: 3 }
+  })
+
+  // Example Logging
   const log = useLogger()
   log.debug('Component Log Example', { userId: 42 })
   console.log(data)

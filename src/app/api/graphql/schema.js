@@ -58,6 +58,7 @@ export const typeDefs = gql`
   }
   type Query {
     organisations: [Organisation!]!
+    organisation(id: Int!): Organisation
     professionals: [Professional!]!
     customers: [Customer!]!
     commonReviewFields: [CommonReviewFields!]!
@@ -68,6 +69,18 @@ export const typeDefs = gql`
 
 export const resolvers = {
   Query: {
+    /**
+     * @param {any} _
+     * @param {Object} variables
+     * @param {number} variables.id
+     */
+    organisation: async (_, { id }) => {
+      const organisation = await db.query.organisations.findMany({
+        where: eq(organisationsTable.id, id)
+      })
+
+      return organisation[0]
+    },
     organisations: async () => {
       const organisations = await db.select().from(organisationsTable)
       return organisations

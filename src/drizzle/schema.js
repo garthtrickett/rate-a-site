@@ -71,7 +71,7 @@ export const commonReviewFields = mysqlTable('commonReviewFields', {
   comments: varchar('comments', { length: 1024 })
 })
 
-export const organisationReviews = mysqlTable('organisationReviews', {
+export const organisationReviews = mysqlTable('organisationReview', {
   id: serial('id').primaryKey().autoincrement(),
   commonReviewFieldsId: int('commonReviewFieldsId'),
   organisationId: int('organisationId'),
