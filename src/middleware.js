@@ -1,7 +1,7 @@
 import { authMiddleware } from '@clerk/nextjs'
 
 export default authMiddleware({
-  publicRoutes: ['/', '/api/graphql', '_axiom/logs', '_axiom/web_vitals']
+  publicRoutes: ['/', '/api/graphql']
 })
 
 export const config = {

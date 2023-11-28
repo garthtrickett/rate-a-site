@@ -65,6 +65,12 @@ export const typeDefs = gql`
     organisationReviews: [OrganisationReview!]!
     professionalReviews: [ProfessionalReview!]!
   }
+  type Mutation {
+    addProfessionalToOrganisation(
+      name: String!
+      organisationId: Int!
+    ): Organisation
+  }
 `
 
 export const resolvers = {
@@ -78,7 +84,6 @@ export const resolvers = {
       const organisation = await db.query.organisations.findMany({
         where: eq(organisationsTable.id, id)
       })
-
       return organisation[0]
     },
     organisations: async () => {
@@ -177,6 +182,32 @@ export const resolvers = {
         )
 
       return organisations
+    }
+  },
+  Mutation: {
+    /**
+     * @param {any} _
+     * @param {Object} args - The arguments passed to the mutation.
+     * @param {string} args.name - The name of the professional to be added.
+     * @param {number} args.organisationId - The ID of the organisation to which the professional is to be added.
+     */
+    addProfessionalToOrganisation: async (_, { name, organisationId }) => {
+      // Create a new professional
+      const professional = await db.insert(professionalsTable).values({
+        name
+      })
+
+      await db.insert(professionalOrganisationMappingTable).values({
+        professionalId: Number(professional.insertId),
+        organisationId
+      })
+
+      // Fetch the updated organisation
+      const [organisation] = await db.query.organisations.findMany({
+        where: eq(organisationsTable.id, organisationId)
+      })
+
+      return organisation
     }
   }
 }
