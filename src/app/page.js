@@ -27,6 +27,10 @@ const ADD_PROFESSIONAL = gql`
     ) {
       id
       name
+      professionals {
+        id
+        name
+      }
     }
   }
 `
