@@ -4,6 +4,8 @@ import React from 'react'
 import { ClerkProvider } from '@clerk/nextjs'
 import { Inter as FontSans } from 'next/font/google'
 import { cn } from '../lib/utils'
+import NavBar from '../components/layout/navBar'
+import Footer from '../components/layout/footer'
 // These styles apply to every route in the application
 import './globals.css'
 
@@ -27,7 +29,9 @@ function RootLayout({ children }) {
               fontSans.variable
             )}
           >
+            <NavBar />
             {children}
+            <Footer />
           </body>
         </html>
       </ApolloWrapper>
