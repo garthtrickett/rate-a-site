@@ -9,7 +9,7 @@ import {
   professionalReviews as professionalReviewsTable,
   professionalOrganisationMapping as professionalOrganisationMappingTable
 } from '../../../drizzle/schema.js'
-import { eq, inArray } from 'drizzle-orm'
+import { eq, inArray, and } from 'drizzle-orm'
 
 export const typeDefs = gql`
   type Organisation {
@@ -227,14 +227,16 @@ export const resolvers = {
       await db
         .delete(professionalOrganisationMappingTable)
         .where(
-          eq(
-            professionalOrganisationMappingTable.professionalId,
-            professionalId
-          ) &&
+          and(
+            eq(
+              professionalOrganisationMappingTable.professionalId,
+              professionalId
+            ),
             eq(
               professionalOrganisationMappingTable.organisationId,
               organisationId
             )
+          )
         )
 
       // Fetch the updated organisation

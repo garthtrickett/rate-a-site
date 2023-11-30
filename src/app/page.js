@@ -77,7 +77,7 @@ export default function Page() {
 
   const handleAddProfessional = () => {
     addProfessional({
-      variables: { name: 'New Professional', organisationId: 3 }
+      variables: { name: 'New Professional', organisationId: 1 }
     })
   }
 
@@ -88,7 +88,7 @@ export default function Page() {
   const handleRemoveProfessional = professionalId => {
     // Add this function
     removeProfessional({
-      variables: { professionalId, organisationId: 3 }
+      variables: { professionalId, organisationId: 1 }
     })
   }
 
@@ -96,7 +96,7 @@ export default function Page() {
     <div>
       <UserButton afterSignOutUrl="/" />
       <Button onClick={handleAddProfessional}>Add Professional</Button>
-      <Button onClick={() => handleRemoveProfessional(16)}>
+      <Button onClick={() => handleRemoveProfessional(2)}>
         Remove Professional
       </Button>{' '}
       {/* Replace someProfessionalId with the actual ID */}
