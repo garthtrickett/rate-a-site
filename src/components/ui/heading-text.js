@@ -1,5 +1,14 @@
 import React from 'react'
 
+/**
+ * `HeadingText` component.
+ *
+ * @component
+ * @param {Object} props - Component props.
+ * @param {React.ReactNode} props.children - The content to be displayed as the main heading.
+ * @param {string} props.subtext - The content to be displayed as the subheading.
+ * @param {string} [props.className] - Additional CSS classes to apply to the component.
+ */
 export default function HeadingText({ children, subtext, className }) {
   return (
     <div className={`space-y-2 ${className}`}>

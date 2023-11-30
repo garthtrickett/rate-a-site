@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'next/image'
 import HeadingText from '../../components/ui/heading-text'
 import { featureCards } from '../../config/contents'
 import { Card, CardDescription, CardTitle } from '../../components/ui/card'

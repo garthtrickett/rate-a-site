@@ -22,16 +22,16 @@ export default function Footer() {
         </div>
         <hr className="my-6 text-muted-foreground sm:mx-auto lg:my-8" />
         <span className="block text-sm text-muted-foreground sm:text-center">
-          © {new Date().getFullYear()}{' '}
-          <a
-            target="_blank"
-            href="https://redpangilinan.live/"
-            className="hover:underline"
-          >
-            Rate a barber
-          </a>
-          . All Rights Reserved.
+          © {new Date().getFullYear()} . All Rights Reserved.
         </span>
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://redpangilinan.live/"
+          className="hover:underline"
+        >
+          Rate a barber
+        </a>
       </div>
     </footer>
   )

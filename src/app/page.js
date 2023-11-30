@@ -96,12 +96,11 @@ export default function Page() {
 
   return (
     <>
+      <Button onClick={handleAddProfessional}>Add Professional</Button>
+      <Button onClick={() => handleRemoveProfessional(2)}></Button>
       <HeroHeader />
       <FeatureCards />
       <UserButton afterSignOutUrl="/" />
     </>
   )
 }
-
-// <Button onClick={handleAddProfessional}>Add Professional</Button>
-// <Button onClick={() => handleRemoveProfessional(2)}></Button>

@@ -10,6 +10,9 @@ const SelectGroup = SelectPrimitive.Group
 
 const SelectValue = SelectPrimitive.Value
 
+/**
+ * @type {React.ForwardRefExoticComponent<import('./types').ButtonProps & React.RefAttributes<HTMLButtonElement>>}
+ */
 const SelectTrigger = React.forwardRef(
   ({ className, children, ...props }, ref) => (
     <SelectPrimitive.Trigger
@@ -29,6 +32,9 @@ const SelectTrigger = React.forwardRef(
 )
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
 
+/**
+ * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps & React.RefAttributes<HTMLDivElement>>}
+ */
 const SelectScrollUpButton = React.forwardRef(
   ({ className, ...props }, ref) => (
     <SelectPrimitive.ScrollUpButton
@@ -45,6 +51,9 @@ const SelectScrollUpButton = React.forwardRef(
 )
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName
 
+/**
+ * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps & React.RefAttributes<HTMLDivElement>>}
+ */
 const SelectScrollDownButton = React.forwardRef(
   ({ className, ...props }, ref) => (
     <SelectPrimitive.ScrollDownButton
@@ -62,6 +71,17 @@ const SelectScrollDownButton = React.forwardRef(
 SelectScrollDownButton.displayName =
   SelectPrimitive.ScrollDownButton.displayName
 
+/**
+ * @typedef {Object} SelectContentProps
+ * @property {'popper' | 'item-aligned' | undefined} [position] - Position of the select content.
+ * @property {React.ReactNode} [children]
+ * @property {string} [className]
+ * @property {Object} [props] - Other props.
+ */
+
+/**
+ * @type {React.ForwardRefExoticComponent<SelectContentProps & React.RefAttributes<HTMLDivElement>>}
+ */
 const SelectContent = React.forwardRef(
   ({ className, children, position = 'popper', ...props }, ref) => (
     <SelectPrimitive.Portal>
@@ -93,6 +113,9 @@ const SelectContent = React.forwardRef(
 )
 SelectContent.displayName = SelectPrimitive.Content.displayName
 
+/**
+ * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps & React.RefAttributes<HTMLDivElement>>}
+ */
 const SelectLabel = React.forwardRef(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
     ref={ref}
@@ -102,6 +125,18 @@ const SelectLabel = React.forwardRef(({ className, ...props }, ref) => (
 ))
 SelectLabel.displayName = SelectPrimitive.Label.displayName
 
+/**
+ * @typedef {Object} SelectItemProps
+ * @property {'popper' | 'item-aligned' | undefined} [position] - Position of the select content.
+ * @property {React.ReactNode} [children]
+ * @property {string} [className]
+ * @property {string} value - Value of the select item.
+ * @property {Object} [props] - Other props.
+ */
+
+/**
+ * @type {React.ForwardRefExoticComponent<SelectItemProps & React.RefAttributes<HTMLDivElement>>}
+ */
 const SelectItem = React.forwardRef(
   ({ className, children, ...props }, ref) => (
     <SelectPrimitive.Item
@@ -124,6 +159,9 @@ const SelectItem = React.forwardRef(
 )
 SelectItem.displayName = SelectPrimitive.Item.displayName
 
+/**
+ * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps & React.RefAttributes<HTMLDivElement>>}
+ */
 const SelectSeparator = React.forwardRef(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator
     ref={ref}

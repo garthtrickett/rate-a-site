@@ -14,8 +14,8 @@ import { Input } from '../../components/ui/input'
 export default function HeroSearch() {
   return (
     <div className="flex items-center">
-      <Select className="mr-2">
-        <SelectTrigger className="mr-2" id="select-a-cut">
+      <Select>
+        <SelectTrigger className="mr-2">
           <SelectValue placeholder="Select a cut" />
         </SelectTrigger>
         <SelectContent>
