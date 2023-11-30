@@ -4,6 +4,9 @@ import { AxiomWebVitals } from 'next-axiom'
 import React from 'react'
 import { ClerkProvider } from '@clerk/nextjs'
 
+// These styles apply to every route in the application
+import './globals.css'
+
 /**
  * @param {{ children: React.ReactNode }} props
  */
