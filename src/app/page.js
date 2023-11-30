@@ -4,8 +4,9 @@ import { useLogger } from 'next-axiom'
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr'
 import { gql, useMutation } from '@apollo/client'
 import { UserButton } from '@clerk/nextjs'
-export const runtime = 'edge' // 'nodejs' is the default
+import { Button } from '../components/ui/button'
 
+export const runtime = 'edge' // 'nodejs' is the default
 const QUERY = gql`
   query getData($organisationId: Int!) {
     organisation(id: $organisationId) {
@@ -93,12 +94,11 @@ export default function Page() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">Hello</h1>
       <UserButton afterSignOutUrl="/" />
-      <button onClick={handleAddProfessional}>Add Professional</button>
-      <button onClick={() => handleRemoveProfessional(16)}>
+      <Button onClick={handleAddProfessional}>Add Professional</Button>
+      <Button onClick={() => handleRemoveProfessional(16)}>
         Remove Professional
-      </button>{' '}
+      </Button>{' '}
       {/* Replace someProfessionalId with the actual ID */}
     </div>
   )
