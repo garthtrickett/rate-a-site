@@ -7,6 +7,7 @@ import { Inter as FontSans } from 'next/font/google'
 import { cn } from '../lib/utils'
 // These styles apply to every route in the application
 import './globals.css'
+import NavBar from '../components/layout/navBar'
 
 export const fontSans = FontSans({
   subsets: ['latin'],
@@ -28,6 +29,7 @@ function RootLayout({ children }) {
               fontSans.variable
             )}
           >
+            <NavBar />
             {children}
           </body>
         </html>

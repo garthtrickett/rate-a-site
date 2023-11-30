@@ -4,7 +4,8 @@ import { useLogger } from 'next-axiom'
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr'
 import { gql, useMutation } from '@apollo/client'
 import { UserButton } from '@clerk/nextjs'
-import { Button } from '../components/ui/button'
+import { Button } from '../components/ui/Button'
+import HeroHeader from '../components/pages/hero'
 
 export const runtime = 'edge' // 'nodejs' is the default
 const QUERY = gql`
@@ -93,13 +94,14 @@ export default function Page() {
   }
 
   return (
-    <div>
+    <>
+      <HeroHeader />
       <UserButton afterSignOutUrl="/" />
       <Button onClick={handleAddProfessional}>Add Professional</Button>
       <Button onClick={() => handleRemoveProfessional(16)}>
         Remove Professional
       </Button>{' '}
       {/* Replace someProfessionalId with the actual ID */}
-    </div>
+    </>
   )
 }
