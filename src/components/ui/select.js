@@ -11,7 +11,7 @@ const SelectGroup = SelectPrimitive.Group
 const SelectValue = SelectPrimitive.Value
 
 /**
- * @type {React.ForwardRefExoticComponent<import('./types').ButtonProps & React.RefAttributes<HTMLButtonElement>>}
+ * @type {React.ForwardRefExoticComponent<import('./types').SelectButtonProps>}
  */
 const SelectTrigger = React.forwardRef(
   ({ className, children, ...props }, ref) => (
@@ -33,7 +33,7 @@ const SelectTrigger = React.forwardRef(
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
 
 /**
- * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps & React.RefAttributes<HTMLDivElement>>}
+ * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps >}
  */
 const SelectScrollUpButton = React.forwardRef(
   ({ className, ...props }, ref) => (
@@ -52,7 +52,7 @@ const SelectScrollUpButton = React.forwardRef(
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName
 
 /**
- * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps & React.RefAttributes<HTMLDivElement>>}
+ * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps>}
  */
 const SelectScrollDownButton = React.forwardRef(
   ({ className, ...props }, ref) => (
@@ -72,7 +72,7 @@ SelectScrollDownButton.displayName =
   SelectPrimitive.ScrollDownButton.displayName
 
 /**
- * @type {React.ForwardRefExoticComponent<import('../../../node_modules/@radix-ui/react-select/dist/index').SelectContentImplProps & React.RefAttributes<HTMLDivElement>>}
+ * @type {React.ForwardRefExoticComponent<import('../../../node_modules/@radix-ui/react-select/dist/index').SelectContentImplProps>}
  */
 const SelectContent = React.forwardRef(
   ({ className, children, position = 'popper', ...props }, ref) => (
@@ -106,7 +106,7 @@ const SelectContent = React.forwardRef(
 SelectContent.displayName = SelectPrimitive.Content.displayName
 
 /**
- * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps & React.RefAttributes<HTMLDivElement>>}
+ * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps>}
  */
 const SelectLabel = React.forwardRef(({ className, ...props }, ref) => (
   <SelectPrimitive.Label
@@ -118,7 +118,7 @@ const SelectLabel = React.forwardRef(({ className, ...props }, ref) => (
 SelectLabel.displayName = SelectPrimitive.Label.displayName
 
 /**
- * @type {React.ForwardRefExoticComponent<import('../../../node_modules/@radix-ui/react-select/dist/index').SelectItemProps & React.RefAttributes<HTMLDivElement>>}
+ * @type {React.ForwardRefExoticComponent<import('../../../node_modules/@radix-ui/react-select/dist/index').SelectItemProps>}
  */
 const SelectItem = React.forwardRef(
   ({ className, children, ...props }, ref) => (
@@ -143,7 +143,7 @@ const SelectItem = React.forwardRef(
 SelectItem.displayName = SelectPrimitive.Item.displayName
 
 /**
- * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps & React.RefAttributes<HTMLDivElement>>}
+ * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps>}
  */
 const SelectSeparator = React.forwardRef(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator

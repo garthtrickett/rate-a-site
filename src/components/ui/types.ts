@@ -1,3 +1,12 @@
+import { buttonVariants } from './button'
+import { type VariantProps } from 'class-variance-authority'
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
+}
+
 export interface ComponentProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export interface InputProps
@@ -6,7 +15,7 @@ export interface InputProps
 export interface LabelProps
   extends React.LabelHTMLAttributes<HTMLLabelElement> {}
 
-export interface ButtonProps
+export interface SelectButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export interface SelectProps

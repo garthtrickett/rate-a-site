@@ -3,7 +3,7 @@ import * as React from 'react'
 import { cn } from '../../../src/lib/utils'
 
 /**
- * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps & React.RefAttributes<HTMLDivElement>>}
+ * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps>}
  */
 const Card = React.forwardRef(({ className, ...props }, ref) => (
   <div
@@ -18,7 +18,7 @@ const Card = React.forwardRef(({ className, ...props }, ref) => (
 Card.displayName = 'Card'
 
 /**
- * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps & React.RefAttributes<HTMLDivElement>>}
+ * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps>}
  */
 const CardHeader = React.forwardRef(({ className, ...props }, ref) => (
   <div
@@ -30,7 +30,7 @@ const CardHeader = React.forwardRef(({ className, ...props }, ref) => (
 CardHeader.displayName = 'CardHeader'
 
 /**
- * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps & React.RefAttributes<HTMLDivElement>>}
+ * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps>}
  */
 const CardTitle = React.forwardRef(({ className, ...props }, ref) => (
   <h3
@@ -45,7 +45,7 @@ const CardTitle = React.forwardRef(({ className, ...props }, ref) => (
 CardTitle.displayName = 'CardTitle'
 
 /**
- * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps & React.RefAttributes<HTMLDivElement>>}
+ * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps>}
  */
 const CardDescription = React.forwardRef(({ className, ...props }, ref) => (
   <p
@@ -57,7 +57,7 @@ const CardDescription = React.forwardRef(({ className, ...props }, ref) => (
 CardDescription.displayName = 'CardDescription'
 
 /**
- * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps & React.RefAttributes<HTMLDivElement>>}
+ * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps>}
  */
 const CardContent = React.forwardRef(({ className, ...props }, ref) => (
   <div ref={ref} className={cn('p-6 pt-0', className)} {...props} />
@@ -65,7 +65,7 @@ const CardContent = React.forwardRef(({ className, ...props }, ref) => (
 CardContent.displayName = 'CardContent'
 
 /**
- * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps & React.RefAttributes<HTMLDivElement>>}
+ * @type {React.ForwardRefExoticComponent<import('./types').ComponentProps>}
  */
 const CardFooter = React.forwardRef(({ className, ...props }, ref) => (
   <div
