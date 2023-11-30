@@ -70,6 +70,10 @@ export const typeDefs = gql`
       name: String!
       organisationId: Int!
     ): Organisation
+    removeProfessionalFromOrganisation(
+      professionalId: Int!
+      organisationId: Int!
+    ): Organisation
   }
 `
 
@@ -201,6 +205,37 @@ export const resolvers = {
         professionalId: Number(professional.insertId),
         organisationId
       })
+
+      // Fetch the updated organisation
+      const [organisation] = await db.query.organisations.findMany({
+        where: eq(organisationsTable.id, organisationId)
+      })
+
+      return organisation
+    },
+    /**
+     * @param {any} _
+     * @param {Object} args - The arguments passed to the mutation.
+     * @param {number} args.professionalId - The ID of the professional to be removed.
+     * @param {number} args.organisationId - The ID of the organisation from which the professional is to be removed.
+     */
+    removeProfessionalFromOrganisation: async (
+      _,
+      { professionalId, organisationId }
+    ) => {
+      // Remove the mapping between the professional and the organisation
+      await db
+        .delete(professionalOrganisationMappingTable)
+        .where(
+          eq(
+            professionalOrganisationMappingTable.professionalId,
+            professionalId
+          ) &&
+            eq(
+              professionalOrganisationMappingTable.organisationId,
+              organisationId
+            )
+        )
 
       // Fetch the updated organisation
       const [organisation] = await db.query.organisations.findMany({
