@@ -5,10 +5,10 @@ export const navLinks = [
   },
   {
     route: 'Rate a barber',
-    path: '/#features'
+    path: '/rate-a-barber'
   },
   {
     route: 'Find a barber',
-    path: '/contact'
+    path: '/find-a-barber'
   }
 ]

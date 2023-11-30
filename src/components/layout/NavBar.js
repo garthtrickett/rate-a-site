@@ -2,9 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-// import { ModeToggle } from '@/components/mode-toggle'
-import { navLinks } from '../../lib/links'
-// import { settings } from '@/config/settings'
+import { navLinks } from '../../config/links'
 
 export default function NavBar() {
   const [navbar, setNavbar] = useState(false)
@@ -28,7 +26,7 @@ export default function NavBar() {
           <div className="flex items-center justify-between py-3 md:block md:py-5">
             <Link href="/" onClick={handleClick}>
               <h1 className="text-2xl font-bold duration-200 lg:hover:scale-[1.10]">
-                Rate a Barber
+                Rate a Barber.
               </h1>
             </Link>
             <div className="flex gap-1 md:hidden">
@@ -67,7 +65,6 @@ export default function NavBar() {
                   </svg>
                 )}
               </button>
-              {/* <ModeToggle /> */}
             </div>
           </div>
         </div>
@@ -93,9 +90,6 @@ export default function NavBar() {
             </ul>
           </div>
         </div>
-        {/* <div className="hidden md:block">
-          <ModeToggle />
-        </div> */}
       </nav>
     </header>
   )
