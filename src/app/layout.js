@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import { ApolloWrapper } from '../lib/apollo-wrapper'
 import { AxiomWebVitals } from 'next-axiom'
 import React from 'react'
@@ -8,7 +7,7 @@ import { cn } from '../lib/utils'
 // These styles apply to every route in the application
 import './globals.css'
 
-export const fontSans = FontSans({
+const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans'
 })
@@ -34,10 +33,6 @@ function RootLayout({ children }) {
       </ApolloWrapper>
     </ClerkProvider>
   )
-}
-
-RootLayout.propTypes = {
-  children: PropTypes.node
 }
 
 export default RootLayout

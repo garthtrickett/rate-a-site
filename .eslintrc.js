@@ -15,7 +15,7 @@ module.exports = {
   },
   plugins: ['react', 'react-hooks', '@typescript-eslint'],
   rules: {
-    // your custom rules...
+    'react/prop-types': 'off'
   },
   settings: {
     react: {
