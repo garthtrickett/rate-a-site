@@ -72,15 +72,7 @@ SelectScrollDownButton.displayName =
   SelectPrimitive.ScrollDownButton.displayName
 
 /**
- * @typedef {Object} SelectContentProps
- * @property {'popper' | 'item-aligned' | undefined} [position] - Position of the select content.
- * @property {React.ReactNode} [children]
- * @property {string} [className]
- * @property {Object} [props] - Other props.
- */
-
-/**
- * @type {React.ForwardRefExoticComponent<SelectContentProps & React.RefAttributes<HTMLDivElement>>}
+ * @type {React.ForwardRefExoticComponent<import('../../../node_modules/@radix-ui/react-select/dist/index').SelectContentImplProps & React.RefAttributes<HTMLDivElement>>}
  */
 const SelectContent = React.forwardRef(
   ({ className, children, position = 'popper', ...props }, ref) => (
@@ -126,16 +118,7 @@ const SelectLabel = React.forwardRef(({ className, ...props }, ref) => (
 SelectLabel.displayName = SelectPrimitive.Label.displayName
 
 /**
- * @typedef {Object} SelectItemProps
- * @property {'popper' | 'item-aligned' | undefined} [position] - Position of the select content.
- * @property {React.ReactNode} [children]
- * @property {string} [className]
- * @property {string} value - Value of the select item.
- * @property {Object} [props] - Other props.
- */
-
-/**
- * @type {React.ForwardRefExoticComponent<SelectItemProps & React.RefAttributes<HTMLDivElement>>}
+ * @type {React.ForwardRefExoticComponent<import('../../../node_modules/@radix-ui/react-select/dist/index').SelectItemProps & React.RefAttributes<HTMLDivElement>>}
  */
 const SelectItem = React.forwardRef(
   ({ className, children, ...props }, ref) => (
