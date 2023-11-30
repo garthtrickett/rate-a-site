@@ -28,7 +28,7 @@ export default function Footer() {
             href="https://redpangilinan.live/"
             className="hover:underline"
           >
-            Red Pangilinan
+            Rate a barber
           </a>
           . All Rights Reserved.
         </span>
