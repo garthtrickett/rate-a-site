@@ -1,4 +1,4 @@
-import { db } from './index.js'
+import { db } from './index'
 import {
   organisations,
   professionals,
@@ -7,7 +7,7 @@ import {
   commonReviewFields,
   organisationReviews,
   professionalReviews
-} from './schema.js'
+} from './schema'
 
 async function seed() {
   // Wipe all rows in the tables

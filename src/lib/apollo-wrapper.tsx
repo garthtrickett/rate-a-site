@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { ReactNode, FC } from 'react'
 import { HttpLink } from '@apollo/client'
 import {
   ApolloNextAppProvider,
@@ -19,11 +19,11 @@ setVerbosity('debug')
 loadDevMessages()
 loadErrorMessages()
 
-// If its SSR Schemalink is used otherwise httpLink
-/**
- * @param {{ children: React.ReactNode }} props
- */
-export function ApolloWrapper({ children }) {
+interface ApolloWrapperProps {
+  children: ReactNode
+}
+
+export const ApolloWrapper: FC<ApolloWrapperProps> = ({ children }) => {
   return (
     <ApolloNextAppProvider makeClient={makeClient}>
       {children}

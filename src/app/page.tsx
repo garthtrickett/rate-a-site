@@ -58,24 +58,21 @@ export const dynamic = 'force-dynamic'
 
 export default function Page() {
   const { data: organisationData } = useSuspenseQuery(QUERY, {
-    // Rename this to organisationData
     variables: { organisationId: 3 }
   })
   console.log(organisationData)
 
-  // Example Logging
   const log = useLogger()
   log.debug('Component Log Example', { userId: 42 })
 
   const [addProfessional, { data: addProfessionalData }] = useMutation(
-    // Rename this to addProfessionalData
     CREATE_PROFESSIONAL_AND_ADD_TO_ORGANISATION
   )
   console.log(addProfessionalData)
 
   const [removeProfessional] = useMutation(
     REMOVE_PROFESSIONAL_FROM_ORGANISATION
-  ) // Add this line
+  )
 
   const handleAddProfessional = () => {
     addProfessional({
@@ -83,12 +80,7 @@ export default function Page() {
     })
   }
 
-  /**
-   * Handles the removal of a professional from an organisation.
-   * @param {number} professionalId - The ID of the professional to be removed.
-   */
-  const handleRemoveProfessional = professionalId => {
-    // Add this function
+  const handleRemoveProfessional = (professionalId: number) => {
     removeProfessional({
       variables: { professionalId, organisationId: 1 }
     })

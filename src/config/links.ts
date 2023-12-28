@@ -1,4 +1,9 @@
-export const navLinks = [
+interface NavLink {
+  route: string
+  path: string
+}
+
+export const navLinks: NavLink[] = [
   {
     route: 'Home',
     path: '/'

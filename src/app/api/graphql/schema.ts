@@ -1,6 +1,6 @@
 import { gql } from 'graphql-tag'
 import { makeExecutableSchema } from '@graphql-tools/schema'
-import { db } from '../../../drizzle/index.js'
+import { db } from '../../../drizzle/index'
 import {
   organisations as organisationsTable,
   professionals as professionalsTable,
@@ -8,8 +8,8 @@ import {
   organisationReviews as organisationReviewsTable,
   professionalReviews as professionalReviewsTable,
   professionalOrganisationMapping as professionalOrganisationMappingTable
-} from '../../../drizzle/schema.js'
-import { eq, inArray, and } from 'drizzle-orm'
+} from '../../../drizzle/schema'
+import { eq, inArray } from 'drizzle-orm'
 
 export const typeDefs = gql`
   type Organisation {
@@ -77,14 +77,22 @@ export const typeDefs = gql`
   }
 `
 
+// Define the types based on the JSDoc comments
+interface Organisation {
+  id: number
+  name: string
+  professionals: Professional[]
+}
+
+interface Professional {
+  id: number
+  name: string
+  organisations: Organisation[]
+}
+
 export const resolvers = {
   Query: {
-    /**
-     * @param {any} _
-     * @param {Object} variables
-     * @param {number} variables.id
-     */
-    organisation: async (_, { id }) => {
+    organisation: async (_: any, { id }: { id: number }) => {
       const organisation = await db.query.organisations.findMany({
         where: eq(organisationsTable.id, id)
       })
@@ -115,18 +123,8 @@ export const resolvers = {
       return professionalReviews
     }
   },
-
-  /**
-   * @typedef {Object} Organisation
-   * @property {number} id - The ID of the organisation.
-   * @property {string} name - The name of the organisation.
-   * @property {Professional[]} professionals - The professionals in the organisation.
-   */
   Organisation: {
-    /**
-     * @param {Organisation} organisation
-     */
-    professionals: async organisation => {
+    professionals: async (organisation: Organisation) => {
       const professionalIds =
         await db.query.professionalOrganisationMapping.findMany({
           columns: {
@@ -151,19 +149,8 @@ export const resolvers = {
       return professionals
     }
   },
-
-  /**
-   * @typedef {Object} Professional
-   * @property {number} id - The ID of the professional.
-   * @property {string} name - The name of the professional.
-   * @property {Organisation[]} organisations - The organisations the professional is associated with.
-   */
-
   Professional: {
-    /**
-     * @param {Professional} professional
-     */
-    organisations: async professional => {
+    organisations: async (professional: Professional) => {
       const organisationIds =
         await db.query.professionalOrganisationMapping.findMany({
           columns: {
@@ -189,13 +176,10 @@ export const resolvers = {
     }
   },
   Mutation: {
-    /**
-     * @param {any} _
-     * @param {Object} args - The arguments passed to the mutation.
-     * @param {string} args.name - The name of the professional to be added.
-     * @param {number} args.organisationId - The ID of the organisation to which the professional is to be added.
-     */
-    addProfessionalToOrganisation: async (_, { name, organisationId }) => {
+    addProfessionalToOrganisation: async (
+      _: any,
+      { name, organisationId }: { name: string; organisationId: number }
+    ) => {
       // Create a new professional
       const professional = await db.insert(professionalsTable).values({
         name
@@ -205,39 +189,6 @@ export const resolvers = {
         professionalId: Number(professional.insertId),
         organisationId
       })
-
-      // Fetch the updated organisation
-      const [organisation] = await db.query.organisations.findMany({
-        where: eq(organisationsTable.id, organisationId)
-      })
-
-      return organisation
-    },
-    /**
-     * @param {any} _
-     * @param {Object} args - The arguments passed to the mutation.
-     * @param {number} args.professionalId - The ID of the professional to be removed.
-     * @param {number} args.organisationId - The ID of the organisation from which the professional is to be removed.
-     */
-    removeProfessionalFromOrganisation: async (
-      _,
-      { professionalId, organisationId }
-    ) => {
-      // Remove the mapping between the professional and the organisation
-      await db
-        .delete(professionalOrganisationMappingTable)
-        .where(
-          and(
-            eq(
-              professionalOrganisationMappingTable.professionalId,
-              professionalId
-            ),
-            eq(
-              professionalOrganisationMappingTable.organisationId,
-              organisationId
-            )
-          )
-        )
 
       // Fetch the updated organisation
       const [organisation] = await db.query.organisations.findMany({

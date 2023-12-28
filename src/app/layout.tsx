@@ -1,6 +1,6 @@
 import { ApolloWrapper } from '../lib/apollo-wrapper'
 import { AxiomWebVitals } from 'next-axiom'
-import React from 'react'
+import React, { ReactNode, FC } from 'react'
 import { ClerkProvider } from '@clerk/nextjs'
 import { Inter as FontSans } from 'next/font/google'
 import { cn } from '../lib/utils'
@@ -9,15 +9,16 @@ import Footer from '../components/layout/footer'
 // These styles apply to every route in the application
 import './globals.css'
 
+interface RootLayoutProps {
+  children: ReactNode
+}
+
 const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans'
 })
 
-/**
- * @param {{ children: React.ReactNode }} props
- */
-function RootLayout({ children }) {
+const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   return (
     <ClerkProvider>
       <ApolloWrapper>
