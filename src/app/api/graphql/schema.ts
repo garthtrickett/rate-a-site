@@ -78,20 +78,22 @@ export const typeDefs = gql`
 `
 
 // Define the types based on the JSDoc comments
+interface Professional {
+  id: number
+  name: string
+  // eslint-disable-next-line no-use-before-define
+  organisations: Organisation[]
+}
+
 interface Organisation {
   id: number
   name: string
   professionals: Professional[]
 }
 
-interface Professional {
-  id: number
-  name: string
-  organisations: Organisation[]
-}
-
 export const resolvers = {
   Query: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     organisation: async (_: any, { id }: { id: number }) => {
       const organisation = await db.query.organisations.findMany({
         where: eq(organisationsTable.id, id)
@@ -177,6 +179,7 @@ export const resolvers = {
   },
   Mutation: {
     addProfessionalToOrganisation: async (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       _: any,
       { name, organisationId }: { name: string; organisationId: number }
     ) => {
