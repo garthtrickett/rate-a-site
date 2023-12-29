@@ -7,11 +7,7 @@
     "skipLibCheck": true,
     "jsx": "preserve",
     "esModuleInterop": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "incremental": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -24,10 +20,12 @@
     ]
   },
   "include": [
-    "src/**/*.{js,ts,tsx}",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+
+  "exclude": ["node_modules"]
 }
