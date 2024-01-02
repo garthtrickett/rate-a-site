@@ -2,19 +2,19 @@
 import { create } from 'zustand'
 
 type State = {
-  data: any[]
+  professionals: any[]
   actions: {
-    setData: (data: any[]) => void
+    setProfessionals: (data: any[]) => void
   }
 }
 
 // Define your store
 export const useStore = create<State>(set => ({
   // State
-  data: [],
+  professionals: [],
 
   // Actions
   actions: {
-    setData: data => set(() => ({ data }))
+    setProfessionals: data => set(() => ({ professionals: data }))
   }
 }))

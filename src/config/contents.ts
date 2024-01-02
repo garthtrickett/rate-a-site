@@ -11,6 +11,10 @@ export const heroHeader = {
   image: `/barber-hero-image.jpg`
 }
 
+export const placeholder = {
+  image: `/placeholder.svg`
+}
+
 export const featureCards = {
   header: `Trusted by`,
   subheader: `The slickest looking chaps around.`,

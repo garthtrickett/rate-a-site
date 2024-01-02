@@ -24,14 +24,18 @@ async function seed() {
     name: 'Your organisation name'
   })
 
-  const prof = await db.insert(professionals).values({
-    name: 'Your professional name'
-  })
+  const names = ['Super Barber 3000', 'John Sharpe', 'Edward Scissorhands'] // Add more names as needed
 
-  await db.insert(professionalOrganisationMapping).values({
-    professionalId: Number(prof.insertId),
-    organisationId: Number(org.insertId)
-  })
+  for (const name of names) {
+    const prof = await db.insert(professionals).values({
+      name: name
+    })
+
+    await db.insert(professionalOrganisationMapping).values({
+      professionalId: Number(prof.insertId),
+      organisationId: Number(org.insertId)
+    })
+  }
 
   const cust = await db.insert(customers).values({
     name: 'Your customer name'
@@ -48,11 +52,11 @@ async function seed() {
     customerId: Number(cust.insertId)
   })
 
-  await db.insert(professionalReviews).values({
-    commonReviewFieldsId: Number(commonReview.insertId),
-    professionalId: Number(prof.insertId),
-    customerId: Number(cust.insertId)
-  })
+  // await db.insert(professionalReviews).values({
+  //   commonReviewFieldsId: Number(commonReview.insertId),
+  //   professionalId: Number(prof.insertId),
+  //   customerId: Number(cust.insertId)
+  // })
 }
 
 seed()

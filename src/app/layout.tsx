@@ -21,21 +21,19 @@ const fontSans = FontSans({
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   return (
     <ClerkProvider>
-      <ApolloWrapper>
-        <html lang="en">
-          <AxiomWebVitals />
-          <body
-            className={cn(
-              'min-h-screen bg-background font-sans antialiased',
-              fontSans.variable
-            )}
-          >
-            <NavBar />
-            {children}
-            <Footer />
-          </body>
-        </html>
-      </ApolloWrapper>
+      <html lang="en">
+        <AxiomWebVitals />
+        <body
+          className={cn(
+            'min-h-screen bg-background font-sans antialiased',
+            fontSans.variable
+          )}
+        >
+          <NavBar />
+          {children}
+          <Footer />
+        </body>
+      </html>
     </ClerkProvider>
   )
 }
