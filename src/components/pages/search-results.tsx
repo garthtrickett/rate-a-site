@@ -16,17 +16,6 @@ import { useStore } from '../../store'
 import React, { useEffect } from 'react'
 
 export default function SearchResults({ data }) {
-  // Get the setProfessionals action from the store
-  const {
-    professionals,
-    actions: { setProfessionals }
-  } = useStore()
-
-  useEffect(() => {
-    // Use the setProfessionals action to update the professionals in the store
-    setProfessionals(data)
-  }, [data]) // Only call setProfessionals when data changes
-
   return (
     <main className="container mx-auto px-4 md:px-6 py-8 grid md:grid-cols-[240px_1fr] gap-10">
       <aside className="flex flex-col gap-4 items-start py-2">
@@ -58,7 +47,7 @@ export default function SearchResults({ data }) {
         </div>
       </aside>
       <section className="grid gap-6 md:gap-8 grid-cols-3">
-        {professionals.map(item => (
+        {data.map(item => (
           <Card key={item.id}>
             <CardHeader>
               <Link className="font-semibold text-lg" href="#">
