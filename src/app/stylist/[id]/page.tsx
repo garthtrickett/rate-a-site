@@ -8,7 +8,8 @@ const Stylist = async ({ params }) => {
   const professionals = await db.query.professionals.findMany({
     where: (professionals, { eq }) => eq(professionals.id, id),
     with: {
-      professionalOrganisationMappings: true
+      professionalOrganisationMappings: true,
+      professionalReviews: true
     }
   })
 

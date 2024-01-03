@@ -53,11 +53,19 @@ export const professionalOrganisationMappingRelations = relations(
 
 // Mapping from the individual tablex to the join table
 export const professionalsRelations = relations(professionals, ({ many }) => ({
-  professionalOrganisationMappings: many(professionalOrganisationMapping)
+  professionalOrganisationMappings: many(professionalOrganisationMapping),
+  professionalReviews: many(professionalReviews, {
+    fields: [professionals.id],
+    references: [professionalReviews.professionalId]
+  })
 }))
 
 export const organisationsRelations = relations(organisations, ({ many }) => ({
-  professionalOrganisationMappings: many(professionalOrganisationMapping)
+  professionalOrganisationMappings: many(professionalOrganisationMapping),
+  organisationReviews: many(organisationReviews, {
+    fields: [organisations.id],
+    references: [organisationReviews.organisationId]
+  })
 }))
 
 export const customersRelations = relations(customers, ({ many }) => ({
@@ -109,6 +117,10 @@ export const organisationReviewsRelations = relations(
     customer: one(customers, {
       fields: [organisationReviews.commonReviewFieldsId],
       references: [customers.id]
+    }),
+    organisation: one(organisations, {
+      fields: [organisationReviews.organisationId],
+      references: [organisations.id]
     })
   })
 )
@@ -123,6 +135,10 @@ export const professionalReviewsRelations = relations(
     customer: one(customers, {
       fields: [professionalReviews.commonReviewFieldsId],
       references: [customers.id]
+    }),
+    professional: one(professionals, {
+      fields: [professionalReviews.professionalId],
+      references: [professionals.id]
     })
   })
 )
