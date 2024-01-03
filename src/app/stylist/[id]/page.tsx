@@ -9,13 +9,18 @@ const Stylist = async ({ params }) => {
     where: (professionals, { eq }) => eq(professionals.id, id),
     with: {
       professionalOrganisationMappings: true,
-      professionalReviews: true
+      professionalReviews: {
+        with: {
+          commonReviewFields: true,
+          customer: true
+        }
+      }
     }
   })
 
   // Assuming that findMany returns an array, get the first item
   const professional = professionals[0]
-  console.log(professional.professionalOrganisationMappings)
+  console.log(professional.professionalReviews)
 
   return <ProfessionalDetails professional={professional} id={id} />
 }
