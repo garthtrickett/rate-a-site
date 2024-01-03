@@ -6,10 +6,15 @@ const Stylist = async ({ params }) => {
   console.log('id', id)
 
   const professionals = await db.query.professionals.findMany({
-    where: (professionals, { eq }) => eq(professionals.id, id)
+    where: (professionals, { eq }) => eq(professionals.id, id),
+    with: {
+      professionalOrganisationMappings: true
+    }
   })
+
   // Assuming that findMany returns an array, get the first item
   const professional = professionals[0]
+  console.log(professional.professionalOrganisationMappings)
 
   return <ProfessionalDetails professional={professional} id={id} />
 }

@@ -8,6 +8,12 @@ import {
 } from 'drizzle-orm/mysql-core'
 import { relations } from 'drizzle-orm'
 
+export const customers = mysqlTable('customer', {
+  id: serial('id'),
+  name: varchar('name', { length: 256 })
+  // add other fields as necessary
+})
+
 export const organisations = mysqlTable('organisation', {
   id: serial('id').primaryKey().autoincrement(),
   name: varchar('name', { length: 256 })
@@ -53,12 +59,6 @@ export const professionalsRelations = relations(professionals, ({ many }) => ({
 export const organisationsRelations = relations(organisations, ({ many }) => ({
   professionalOrganisationMappings: many(professionalOrganisationMapping)
 }))
-
-export const customers = mysqlTable('customer', {
-  id: serial('id'),
-  name: varchar('name', { length: 256 })
-  // add other fields as necessary
-})
 
 export const customersRelations = relations(customers, ({ many }) => ({
   organisationReviews: many(organisationReviews),

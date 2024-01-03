@@ -4,7 +4,6 @@ import { db } from '../../drizzle/index'
 
 const SearchPage = async () => {
   const results = await db.query.professionals.findMany()
-  console.log(results)
 
   return (
     <>
