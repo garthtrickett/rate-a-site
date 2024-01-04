@@ -115,7 +115,7 @@ export const organisationReviewsRelations = relations(
       references: [commonReviewFields.id]
     }),
     customer: one(customers, {
-      fields: [organisationReviews.commonReviewFieldsId],
+      fields: [organisationReviews.customerId],
       references: [customers.id]
     }),
     organisation: one(organisations, {
@@ -133,7 +133,7 @@ export const professionalReviewsRelations = relations(
       references: [commonReviewFields.id]
     }),
     customer: one(customers, {
-      fields: [professionalReviews.commonReviewFieldsId],
+      fields: [professionalReviews.customerId], // Corrected here
       references: [customers.id]
     }),
     professional: one(professionals, {

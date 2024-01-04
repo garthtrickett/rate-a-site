@@ -21,7 +21,7 @@ async function seed() {
 
   // Insert new rows
   const org = await db.insert(organisations).values({
-    name: 'Your organisation name'
+    name: "Afro Joe's Barbershop"
   })
 
   const names = [
@@ -32,6 +32,9 @@ async function seed() {
     'Fade Master Fred',
     'Mohawk Mike'
   ]
+
+  let orgs = []
+  orgs.push(org)
 
   let profs = []
   for (const name of names) {
@@ -106,6 +109,26 @@ async function seed() {
         commonReviewFieldsId: Number(commonReview.insertId),
         professionalId: Number(prof.insertId),
         customerId: Number(cust.insertId)
+      })
+    }
+  }
+
+  // Iterate over each organisation
+  for (const org of orgs) {
+    // Generate a random number of reviews for each organisation (between 1 and 5)
+    const numReviews = getRandomInt(1, 5)
+
+    for (let i = 0; i < numReviews; i++) {
+      // Pick a random customer
+      const cust = customers_array[getRandomInt(0, customers_array.length - 1)]
+
+      // Pick a random review comment
+      const comment = reviewComments[getRandomInt(0, reviewComments.length - 1)]
+
+      // Create a commonReview with the random comment and a random rating
+      const commonReview = await db.insert(commonReviewFields).values({
+        rating: getRandomInt(1, 5), // Random rating between 1 and 5
+        comments: comment
       })
 
       // Insert an organisationReview

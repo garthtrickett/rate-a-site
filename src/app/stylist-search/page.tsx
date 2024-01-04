@@ -1,15 +1,15 @@
 // app/search/page.tsx
-import SearchResults from '../../components/pages/search-results'
+import StylistSearchResults from '../../components/pages/stylist-search-results'
 import { db } from '../../drizzle/index'
 
-const SearchPage = async () => {
+const StylistSearchPage = async () => {
   const results = await db.query.professionals.findMany()
 
   return (
     <>
-      <SearchResults data={results} />
+      <StylistSearchResults data={results} />
     </>
   )
 }
 
-export default SearchPage
+export default StylistSearchPage
